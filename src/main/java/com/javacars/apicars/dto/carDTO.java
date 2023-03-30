@@ -3,9 +3,9 @@ package com.javacars.apicars.dto;
 public record carDTO(
     String modelo,
     String fabricante,
-    String dataFabricacao,
+    String data_fabricacao,
     double valor,
-    int anoModelo
+    int ano_modelo
 ) {
     
 }
