@@ -3,7 +3,9 @@ package com.javacars.apicars.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,11 +19,10 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/cars")
-
 public class CarsController {
 
     @Autowired
-    private CarRepository repository;
+    public CarRepository repository;
 
     @GetMapping
     public List<Car> findCars() {
@@ -34,6 +35,13 @@ public class CarsController {
     public void createCars(@RequestBody @Valid carDTO req) {
 
         repository.save(new Car(req));
+
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteCars(@PathVariable Long id) {
+        
+        repository.deleteById(id);
 
     }
 }
